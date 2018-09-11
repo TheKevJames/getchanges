@@ -28,7 +28,7 @@ class PyPI(Base):
 
             info = metadata.get('info', {})
             # TODO: metadata.get('releases') ?
-            project_urls = info.get('project_urls', {})
+            project_urls = info.get('project_urls') or {}
 
             for k in {'changes', 'Changes', 'changelog', 'Changelog'}:
                 if project_urls.get(k):
