@@ -5,7 +5,7 @@ import aiohttp
 
 class Base:
     hints: typing.Set[str] = set()
-    _filenames = {'changelog', 'changes', 'history'}
+    _filenames = {'changelog', 'changes', 'history', 'release'}
     _folders = {'change', 'doc'}
 
     @classmethod
