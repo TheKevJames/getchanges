@@ -15,8 +15,9 @@ log = logging.getLogger(__name__)
 #   <a class="reference internal" href="path/to/changes.html">Changelog</a>
 # </li>
 class Parser(html.parser.HTMLParser):
-    def __init__(self) -> None:
+    def __init__(self, filenames: typing.Set[str]) -> None:
         super().__init__()
+        self._filenames = filenames
         self.candidates: typing.List[str] = []
         self.in_li = False
         self.last_href: str
@@ -41,7 +42,7 @@ class Parser(html.parser.HTMLParser):
         if not self.in_li:
             return
 
-        if any(data.lower().startswith(x) for x in {'changelog', 'changes'}):
+        if any(data.lower().startswith(x) for x in self._filenames):
             self.candidates.append(self.last_href)
 
 
@@ -55,7 +56,7 @@ class ReadTheDocs(Base):
         resp.raise_for_status()
         body = await resp.text()
 
-        parser = Parser()
+        parser = Parser(cls._filenames)
         parser.feed(body)
 
         # TODO: pick best

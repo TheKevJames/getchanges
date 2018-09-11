@@ -5,6 +5,8 @@ import aiohttp
 
 class Base:
     hints: typing.Set[str] = set()
+    _filenames = {'changelog', 'changes', 'history'}
+    _folders = {'change', 'doc'}
 
     @classmethod
     def matches(cls, url: str) -> bool:

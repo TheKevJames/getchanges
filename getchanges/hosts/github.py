@@ -42,7 +42,7 @@ class GitHub(Base):
         futures = []
         for folder in {f['path'] for f in files if f['type'] == 'dir'}:
             if any(folder.replace(path, '').strip('/').startswith(x)
-                   for x in {'change', 'doc'}):
+                   for x in cls._folders):
                 futures.append(cls._get_paths(owner, repo, path=folder,
                                               session=session))
 
@@ -52,7 +52,7 @@ class GitHub(Base):
             filemap.update(fmap)
 
         return {url: name for url, name in filemap.items()
-                if any(name.startswith(x) for x in {'changelog', 'changes'})}
+                if any(name.startswith(x) for x in cls._filenames)}
 
     @classmethod
     async def find_clog(cls, url: str, *,
