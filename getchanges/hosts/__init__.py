@@ -9,12 +9,13 @@ from .readthedocs import ReadTheDocs
 log = logging.getLogger(__name__)
 
 
-async def find_clog(url: str, *, session=aiohttp.ClientSession) -> str:
+async def find_clog(url: str, *, session: aiohttp.ClientSession) -> str:
     for host in {GitHub, ReadTheDocs}:
         if host.matches(url):
             return await host.find_clog(url, session=session)
 
-    log.warning(f'could not find changelog given url {url}')
+    log.warning('could not find changelog given url %s', url)
+    return None
 
 
 def get_url(url: str) -> str:

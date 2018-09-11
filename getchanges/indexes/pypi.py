@@ -4,9 +4,9 @@ import typing
 
 import aiohttp
 
-from .base import Base
 from ..hosts import find_clog
 from ..hosts import get_url
+from .base import Base
 
 
 log = logging.getLogger(__name__)
@@ -17,7 +17,7 @@ class PyPI(Base):
 
     @staticmethod
     async def find_url(name: str, *,
-                       session=aiohttp.ClientSession) -> typing.Set[str]:
+                       session: aiohttp.ClientSession) -> typing.Set[str]:
         candidates: typing.Set[str] = set()
         pypi_url = f'https://pypi.org/pypi/{name}/json'
 
@@ -42,6 +42,6 @@ class PyPI(Base):
             futures = [find_clog(r, session=session) for r in repos]
             candidates.update(set(await asyncio.gather(*futures)))
         except Exception as e:
-            log.warning(f'could not find {name} on PyPI', exc_info=e)
+            log.warning('could not find %s on PyPI', name, exc_info=e)
 
         return candidates

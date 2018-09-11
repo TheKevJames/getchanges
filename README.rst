@@ -3,9 +3,10 @@ getchanges
 
 ``getchanges`` aims to be a CLI tool for finding and retrieving changelogs for
 any package. That means:
-- system packages (``apt``, ``zypper``, ``pacman``, ``brew``, ...)
-- language packages (``pip``, ``gem``, ``cargo``, ...)
-- ad-hoc scripts (``curl https://foo.bar > /bin/foobar``, ...)
+
+* system packages (``apt``, ``zypper``, ``pacman``, ``brew``, ...)
+* language packages (``pip``, ``gem``, ``cargo``, ...)
+* ad-hoc scripts (``curl https://foo.bar > /bin/foobar``, ...)
 
 This project is a Work In-Progress! Expect very little for now and avoid the
 disappointment.

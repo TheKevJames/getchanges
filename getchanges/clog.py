@@ -41,4 +41,5 @@ async def retrieve(name: str, *, source: str = None,
     for url in urls:
         return await Clog.init(url, session=session)
 
-    log.error(f'could not find changelog for {name}')
+    log.error('could not find changelog for %s', name)
+    return None

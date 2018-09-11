@@ -4,14 +4,14 @@ import aiohttp
 
 
 class Base:
-    hints: typing.Set[str] = {}
+    hints: typing.Set[str] = set()
 
     @classmethod
     def matches(cls, url: str) -> bool:
         return any(h in url for h in cls.hints)
 
     @staticmethod
-    async def find_clog(url: str, *, session=aiohttp.ClientSession) -> str:
+    async def find_clog(url: str, *, session: aiohttp.ClientSession) -> str:
         raise NotImplementedError
 
     @staticmethod
