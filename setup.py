@@ -13,7 +13,7 @@ with open(os.path.join(PACKAGE_ROOT, 'requirements.txt')) as f:
 
 setuptools.setup(
     name='getchanges',
-    version='0.0.1',
+    version='0.0.2',
     description='getchanges is a utility for retrieving changelogs',
     long_description=README,
     packages=setuptools.find_packages(exclude=('tests',)),
