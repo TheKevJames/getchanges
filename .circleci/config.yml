@@ -16,25 +16,6 @@ jobs:
           paths:
             - ~/.cache/pre-commit
 
-  test-py35:
-    docker:
-      - image: python:3.5.6
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - cache-pip-{{ checksum "requirements.txt" }}{{ checksum "requirements.test.txt" }}
-      - run: python -m pip install -r requirements.txt
-      - run: python -m pip install -r requirements.test.txt
-      - save_cache:
-          key: cache-pip-{{ checksum "requirements.txt" }}{{ checksum "requirements.test.txt" }}
-          paths:
-            - /usr/local/bin/coverage
-            - /usr/local/lib/python3.5/site-packages
-            - ~/.cache/pip
-      - run: python setup.py check --restructuredtext --strict
-      - run: python -m pytest --cov=getchanges tests/
-
   test-py36:
     docker:
       - image: python:3.6.6
@@ -112,10 +93,6 @@ workflows:
             tags:
               only: /.*/
 
-      - test-py35:
-          filters:
-            tags:
-              only: /.*/
       - test-py36:
           filters:
             tags:
@@ -134,7 +111,6 @@ workflows:
               only: /[0-9]+\.[0-9]+\.[0-9]+/
           requires:
             - lint
-            - test-py35
             - test-py36
             - test-py37
 
@@ -147,6 +123,5 @@ workflows:
               only: /[0-9]+\.[0-9]+\.[0-9]+/
           requires:
             - lint
-            - test-py35
             - test-py36
             - test-py37
