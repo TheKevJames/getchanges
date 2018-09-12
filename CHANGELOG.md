@@ -1,3 +1,17 @@
+<a name="0.0.3"></a>
+## 0.0.3 (2018-09-12)
+
+
+#### Bug Fixes
+
+* **cli:**  allow usage without explicit installation ([9c1bb62d](9c1bb62d))
+
+#### Compatibility
+
+*  drop (broken) support for Python 3.5 ([3426438e](3426438e))
+
+
+
 <a name="0.0.2"></a>
 ## 0.0.2 (2018-09-11)
 
