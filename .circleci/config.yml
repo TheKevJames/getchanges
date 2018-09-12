@@ -58,6 +58,7 @@ jobs:
     docker:
       - image: python:3.7.0-alpine3.8
     steps:
+      - run: apk add --no-cache git openssh-client
       - run: pip install twine
       - checkout
       - deploy:
@@ -86,7 +87,7 @@ jobs:
 
 workflows:
   version: 2
-  test-all-envs:
+  run-jobs:
     jobs:
       - lint:
           filters:
