@@ -41,7 +41,7 @@ class PyPI(Base):
 
             futures = [find_clog(r, session=session) for r in repos]
             candidates.update(set(await asyncio.gather(*futures)))
-        except Exception as e:
+        except Exception as e:  # pylint: disable=broad-except
             log.warning('could not find %s on PyPI', name, exc_info=e)
 
         return candidates
