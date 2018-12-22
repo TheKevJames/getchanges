@@ -1,7 +1,9 @@
 import asyncio
 import logging
 import os
-import typing
+from typing import Any
+from typing import Dict
+from typing import List
 
 import aiohttp
 
@@ -17,7 +19,7 @@ class GitHub(Base):
     hints = {'github.com', 'githubusercontent.com'}
 
     @staticmethod
-    def _headers() -> dict:
+    def _headers() -> Dict[str, str]:
         h = {}
         if TOKEN:
             h['Authorization'] = f'token {TOKEN}'
@@ -25,17 +27,17 @@ class GitHub(Base):
 
     @classmethod
     async def _get(cls, owner: str, repo: str, route: str, *,
-                   session: aiohttp.ClientSession) -> typing.List[dict]:
+                   session: aiohttp.ClientSession) -> List[Dict[str, Any]]:
         url = f'https://api.github.com/repos/{owner}/{repo}/{route}'
 
         resp = await session.get(url, headers=cls._headers())
         resp.raise_for_status()
-        blob: typing.List[dict] = await resp.json()
+        blob: List[Dict[str, Any]] = await resp.json()
         return blob
 
     @classmethod
     async def _get_paths(cls, owner: str, repo: str, *, path: str = '',
-                         session: aiohttp.ClientSession) -> dict:
+                         session: aiohttp.ClientSession) -> Dict[str, str]:
         files = await cls._get(owner, repo, f'contents/{path}',
                                session=session)
 

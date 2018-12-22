@@ -1,10 +1,10 @@
-import typing
+from typing import Set
 
 import aiohttp
 
 
 class Base:
-    hints: typing.Set[str] = set()
+    hints: Set[str] = set()
     _filenames = {'changelog', 'changes', 'history', 'release'}
     _folders = {'change', 'doc', 'release'}
 

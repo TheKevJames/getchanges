@@ -1,10 +1,11 @@
-import typing
+from typing import Set
+from typing import Type
 
 from .base import Base
 from .pypi import PyPI
 
 
-def get() -> typing.Set[typing.Type[Base]]:
+def get() -> Set[Type[Base]]:
     return {PyPI}
 
 

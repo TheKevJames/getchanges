@@ -1,6 +1,6 @@
 import asyncio
 import logging
-import typing
+from typing import Set
 
 import aiohttp
 
@@ -17,8 +17,8 @@ class PyPI(Base):
 
     @staticmethod
     async def find_url(name: str, *,
-                       session: aiohttp.ClientSession) -> typing.Set[str]:
-        candidates: typing.Set[str] = set()
+                       session: aiohttp.ClientSession) -> Set[str]:
+        candidates: Set[str] = set()
         pypi_url = f'https://pypi.org/pypi/{name}/json'
 
         try:

@@ -1,12 +1,12 @@
-import typing
+from typing import Set
 
 import aiohttp
 
 
 class Base:
-    hints: typing.Set[str] = set()
+    hints: Set[str] = set()
 
     @staticmethod
     async def find_url(name: str, *,
-                       session: aiohttp.ClientSession) -> typing.Set[str]:
+                       session: aiohttp.ClientSession) -> Set[str]:
         raise NotImplementedError

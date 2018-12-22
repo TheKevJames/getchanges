@@ -3,18 +3,20 @@ version: 2
 jobs:
   lint:
     docker:
-      - image: python:3.7.0
+      - image: python:3.7.1-alpine3.8
     steps:
+      - run: apk add -U git
       - checkout
-      - run: python -m pip install pre-commit
+      - run: pip install pre-commit
       - restore_cache:
           keys:
             - cache-pre-commit-{{ checksum ".pre-commit-config.yaml" }}
-      - run: pre-commit run --all-files
+      - run: pre-commit install-hooks
       - save_cache:
           key: cache-pre-commit-{{ checksum ".pre-commit-config.yaml" }}
           paths:
             - ~/.cache/pre-commit
+      - run: pre-commit run --all-files
 
   test-py36:
     docker:
@@ -37,7 +39,7 @@ jobs:
 
   test-py37:
     docker:
-      - image: python:3.7.0
+      - image: python:3.7.1
     steps:
       - checkout
       - restore_cache:
@@ -56,7 +58,7 @@ jobs:
 
   pypi:
     docker:
-      - image: python:3.7.0-alpine3.8
+      - image: python:3.7.1-alpine3.8
     steps:
       - run: apk add --no-cache git openssh-client
       - run: pip install twine
