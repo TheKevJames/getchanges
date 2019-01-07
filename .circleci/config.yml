@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: python:3.7.1-alpine3.8
     steps:
-      - run: apk add -U git
+      - run: apk add -U gcc git
       - checkout
       - run: pip install pre-commit
       - restore_cache:
