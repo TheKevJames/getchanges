@@ -1,6 +1,16 @@
+<a name="0.1.0"></a>
+## 0.1.0 (2019-02-02)
+
+#### Features
+
+* **cli:**  hide stack traces behind --verbose ([039477d7](039477d7))
+
+#### Bug Fixes
+
+* **cli:**  avoid bad error when piping into pager ([890564f6](890564f6))
+
 <a name="0.0.3"></a>
 ## 0.0.3 (2018-09-12)
-
 
 #### Bug Fixes
 
@@ -9,8 +19,6 @@
 #### Compatibility
 
 *  drop (broken) support for Python 3.5 ([3426438e](3426438e))
-
-
 
 <a name="0.0.2"></a>
 ## 0.0.2 (2018-09-11)
