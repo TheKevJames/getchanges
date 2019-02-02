@@ -5,6 +5,7 @@ Usage:
 
 Options:
     -s --source=SOURCE  Provide a source restriction.
+    -v --verbose        Enable verbose logging.
     -h --help           Display this help.
 """
 import asyncio
@@ -20,10 +21,9 @@ from .version import __version__
 async def run() -> None:
     args = docopt.docopt(__doc__, version=__version__)
 
-    name = args['NAME']
-    source = args.get('--source')
     async with aiohttp.ClientSession() as session:
-        clog = await retrieve(name, source=source, session=session)
+        clog = await retrieve(args['NAME'], source=args['--source'],
+                              session=session, verbose=args['--verbose'])
 
     if not clog:
         sys.exit(1)

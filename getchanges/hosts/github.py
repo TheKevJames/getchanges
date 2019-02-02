@@ -31,6 +31,9 @@ class GitHub(Base):
         url = f'https://api.github.com/repos/{owner}/{repo}/{route}'
 
         resp = await session.get(url, headers=cls._headers())
+        if resp.status in {401, 403}:
+            log.warning('bad GitHub auth, try setting $GITHUB_TOKEN')
+
         resp.raise_for_status()
         blob: List[Dict[str, Any]] = await resp.json()
         return blob

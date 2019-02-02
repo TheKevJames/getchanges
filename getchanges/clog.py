@@ -27,13 +27,14 @@ class Clog:
 
 
 async def retrieve(name: str, *, source: str = None,
-                   session: aiohttp.ClientSession) -> Clog:
+                   session: aiohttp.ClientSession,
+                   verbose: bool = False) -> Clog:
     futures = []
     for index in get():
         if source and source not in index.hints:
             continue
 
-        futures.append(index.find_url(name, session=session))
+        futures.append(index.find_url(name, session=session, verbose=verbose))
 
     urls = {u for ul in await asyncio.gather(*futures) for u in ul if u}
 

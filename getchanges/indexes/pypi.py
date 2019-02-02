@@ -16,8 +16,8 @@ class PyPI(Base):
     hints = {'pip', 'pypi', 'py', 'python'}
 
     @staticmethod
-    async def find_url(name: str, *,
-                       session: aiohttp.ClientSession) -> Set[str]:
+    async def find_url(name: str, *, session: aiohttp.ClientSession,
+                       verbose: bool = False) -> Set[str]:
         candidates: Set[str] = set()
         pypi_url = f'https://pypi.org/pypi/{name}/json'
 
@@ -42,6 +42,7 @@ class PyPI(Base):
             futures = [find_clog(r, session=session) for r in repos]
             candidates.update(set(await asyncio.gather(*futures)))
         except Exception as e:  # pylint: disable=broad-except
-            log.warning('could not find %s on PyPI', name, exc_info=e)
+            if verbose:
+                log.warning('could not find %s on PyPI', name, exc_info=e)
 
         return candidates
