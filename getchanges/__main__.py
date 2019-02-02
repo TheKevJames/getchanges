@@ -28,7 +28,10 @@ async def run() -> None:
     if not clog:
         sys.exit(1)
 
-    print(clog)
+    try:
+        print(clog)
+    except BrokenPipeError:
+        pass
 
 
 def main() -> None:
