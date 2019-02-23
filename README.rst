@@ -83,10 +83,10 @@ with my rough end goal::
 Releasing
 ---------
 
-#. bump `setup.py:version`
-#. `clog -C CHANGELOG.md -F --setversion=x.y.z`
-#. `git add setup.py CHANGELOG.md`
-#. `git commit -m 'chore(release): bump version'`
-#. `git tag -a x.y.z --cleanup=whitespace`
+#. bump ``setup.py:version``
+#. ``clog -C CHANGELOG.md -F --setversion=x.y.z``
+#. ``git add setup.py CHANGELOG.md``
+#. ``git commit -m 'chore(release): bump version'``
+#. ``git tag -a x.y.z --cleanup=whitespace``
 
 .. _conventional changelogs: https://github.com/conventional-changelog/conventional-changelog

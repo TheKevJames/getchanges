@@ -1,4 +1,5 @@
-"""changes
+"""
+changes
 
 Usage:
     changes [options] NAME
