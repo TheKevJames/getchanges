@@ -1,5 +1,5 @@
 """
-changes
+changes is a utility for retrieving changelogs.
 
 Usage:
     changes [options] NAME

@@ -1,3 +1,4 @@
+from typing import Optional
 from typing import Set
 
 import aiohttp
@@ -13,7 +14,8 @@ class Base:
         return any(h in url for h in cls.hints)
 
     @staticmethod
-    async def find_clog(url: str, *, session: aiohttp.ClientSession) -> str:
+    async def find_clog(url: str, *,
+                        session: aiohttp.ClientSession) -> Optional[str]:
         raise NotImplementedError
 
     @staticmethod

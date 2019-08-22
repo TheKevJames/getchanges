@@ -1,6 +1,7 @@
 import html.parser
 import logging
 from typing import List
+from typing import Optional
 from typing import Set
 from typing import Tuple
 
@@ -27,13 +28,14 @@ class Parser(html.parser.HTMLParser):
     def error(self, message: str) -> None:
         log.error('got parsing error: %s', message)
 
-    def handle_starttag(self, tag: str, attrs: List[Tuple[str, str]]) -> None:
+    def handle_starttag(self, tag: str,
+                        attrs: List[Tuple[str, Optional[str]]]) -> None:
         if tag == 'li' and ('class', 'toctree-l1') in attrs:
             self.in_li = True
             return
 
         if self.in_li and tag == 'a':
-            self.last_href = [v for k, v in attrs if k == 'href'][0]
+            self.last_href = [v for k, v in attrs if k == 'href' and v][0]
 
     def handle_endtag(self, tag: str) -> None:
         if self.in_li and tag == 'li':
@@ -52,7 +54,7 @@ class ReadTheDocs(Base):
 
     @classmethod
     async def find_clog(cls, url: str, *,
-                        session: aiohttp.ClientSession) -> str:
+                        session: aiohttp.ClientSession) -> Optional[str]:
         resp = await session.get(url)
         resp.raise_for_status()
         body = await resp.text()

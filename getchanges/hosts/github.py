@@ -4,6 +4,7 @@ import os
 from typing import Any
 from typing import Dict
 from typing import List
+from typing import Optional
 
 import aiohttp
 
@@ -61,7 +62,7 @@ class GitHub(Base):
 
     @classmethod
     async def find_clog(cls, url: str, *,
-                        session: aiohttp.ClientSession) -> str:
+                        session: aiohttp.ClientSession) -> Optional[str]:
         if '/tree/master/' in url:
             url, path = url.split('/tree/master/')
         else:

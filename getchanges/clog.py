@@ -1,5 +1,6 @@
 import asyncio
 import logging
+from typing import Optional
 
 import aiohttp
 
@@ -26,9 +27,9 @@ class Clog:
         return cls(raw=raw, url=url)
 
 
-async def retrieve(name: str, *, source: str = None,
+async def retrieve(name: str, *, source: Optional[str] = None,
                    session: aiohttp.ClientSession,
-                   verbose: bool = False) -> Clog:
+                   verbose: bool = False) -> Optional[Clog]:
     futures = []
     for index in get():
         if source and source not in index.hints:

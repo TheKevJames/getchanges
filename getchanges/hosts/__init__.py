@@ -1,4 +1,5 @@
 import logging
+from typing import Optional
 
 import aiohttp
 
@@ -9,7 +10,8 @@ from .readthedocs import ReadTheDocs
 log = logging.getLogger(__name__)
 
 
-async def find_clog(url: str, *, session: aiohttp.ClientSession) -> str:
+async def find_clog(url: str, *,
+                    session: aiohttp.ClientSession) -> Optional[str]:
     for host in {GitHub, ReadTheDocs}:
         if host.matches(url):
             return await host.find_clog(url, session=session)
