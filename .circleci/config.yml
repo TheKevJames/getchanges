@@ -19,7 +19,7 @@ jobs:
 
   test-py36:
     docker:
-      - image: python:3.6.9
+      - image: python:3.7.4
     steps:
       - checkout
       - restore_cache:
