@@ -3,7 +3,7 @@ version: 2
 jobs:
   lint:
     docker:
-      - image: python:3.7.1
+      - image: python:3.7.4
     steps:
       - checkout
       - run: pip install pre-commit
@@ -38,7 +38,7 @@ jobs:
 
   test-py37:
     docker:
-      - image: python:3.7.1
+      - image: python:3.7.4
     steps:
       - checkout
       - restore_cache:
@@ -57,7 +57,7 @@ jobs:
 
   pypi:
     docker:
-      - image: python:3.7.1-alpine3.8
+      - image: python:3.7.4
     steps:
       - run: apk add --no-cache git openssh-client
       - run: pip install twine
