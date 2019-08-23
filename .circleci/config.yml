@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   linter: thekevjames/linter@0
-  pytest: thekevjames/pytest@0.1
+  pytest: thekevjames/pytest@0
 
 jobs:
   pypi:
