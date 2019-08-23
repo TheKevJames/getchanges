@@ -2,10 +2,7 @@ repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v2.3.0
     hooks:
-    -   id: check-ast
-    -   id: check-builtin-literals
     -   id: check-case-conflict
-    -   id: check-docstring-first
     -   id: check-executables-have-shebangs
     -   id: check-json
     -   id: check-merge-conflict
@@ -15,17 +12,22 @@ repos:
     -   id: check-xml
     -   id: check-yaml
         args: [--allow-multiple-documents]
-    -   id: debug-statements
     -   id: detect-private-key
-    -   id: double-quote-string-fixer
     -   id: end-of-file-fixer
     -   id: file-contents-sorter
         files: .(docker|git)ignore
     -   id: mixed-line-ending
         args: [--fix=lf]
+    -   id: trailing-whitespace
+
+# python
+    -   id: check-ast
+    -   id: check-builtin-literals
+    -   id: check-docstring-first
+    -   id: debug-statements
+    -   id: double-quote-string-fixer
     -   id: name-tests-test
     -   id: requirements-txt-fixer
-    -   id: trailing-whitespace
 -   repo: https://github.com/pre-commit/mirrors-pylint
     rev: v2.3.1
     hooks:
@@ -92,8 +94,58 @@ repos:
     -   id: python-no-eval
     -   id: python-no-log-warn
     -   id: python-use-type-annotations
+
+# rst
     -   id: rst-backticks
 -   repo: https://github.com/Lucas-C/pre-commit-hooks-markup
     rev: v1.0.0
     hooks:
     -   id: rst-linter
+
+# java
+-   repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
+    rev: v1.2.3
+    hooks:
+    -   id: pretty-format-java
+        args: [--autofix]
+
+# javascript
+-   repo: https://github.com/pre-commit/mirrors-fixmyjs
+    rev: v2.0.0
+    hooks:
+    -   id: fixmyjs
+-   repo: https://github.com/pre-commit/mirrors-jshint
+    rev: v2.10.2
+    hooks:
+    -   id: jshint
+
+# terraform
+-   repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.17.0
+    hooks:
+    -   id: terraform_fmt
+    -   id: terraform_validate
+
+# docker
+-   repo: https://github.com/pryorda/dockerfilelint-precommit-hooks
+    rev: v0.1.0
+    hooks:
+    -   id: dockerfilelint
+
+# shell
+-   repo: https://github.com/lovesegfault/beautysh
+    rev: "4.1"
+    hooks:
+    -   id: beautysh
+-   repo: https://github.com/openstack/bashate
+    rev: 0.6.0
+    hooks:
+    -   id: bashate
+-   repo: https://github.com/detailyang/pre-commit-shell
+    rev: v1.0.6
+    hooks:
+    -   id: shell-lint
+-   repo: https://github.com/jumanjihouse/pre-commit-hooks
+    rev: 1.11.0
+    hooks:
+    -   id: script-must-not-have-extension
