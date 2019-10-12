@@ -21,10 +21,10 @@ setuptools.setup(
     install_requires=REQUIREMENTS,
     author='Kevin James',
     author_email='KevinJames@thekev.in',
-    url='https://github.com/TheKevJames/experiments/blob/master/getchanges',
+    url='https://github.com/TheKevJames/getchanges',
     project_urls={
-        'Changelog': ('https://github.com/TheKevJames/experiments/blob/master'
-                      '/getchanges/CHANGELOG.md'),
+        'Changelog': ('https://github.com/TheKevJames/getchanges/blob/'
+                      'master/CHANGELOG.md'),
     },
     include_package_data=True,
     platforms='Posix; MacOS X; Windows',
