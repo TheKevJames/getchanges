@@ -20,7 +20,7 @@ jobs:
 
   github:
     docker:
-      - image: alpine:3.10
+      - image: alpine:3.11
     steps:
       - run: apk add --no-cache curl git openssh-client
       - checkout
