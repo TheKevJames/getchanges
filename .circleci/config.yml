@@ -20,21 +20,12 @@ jobs:
 
   github:
     docker:
-      - image: alpine:3.11
+      - image: debian:buster-slim
     steps:
-      - run: apk add --no-cache curl git openssh-client
+      - run: apt update -qy
+      - run: apt install -qy hub git
       - checkout
-      - run:
-          name: install github-release
-          command: |
-            curl -L https://github.com/aktau/github-release/releases/download/v0.7.2/linux-amd64-github-release.tar.bz2 > github-release.tar.bz2
-            tar xjf github-release.tar.bz2
-            rm -f github-release.tar.bz2
-      - deploy:
-          name: create GitHub release
-          command: |
-            ./bin/linux/amd64/github-release release -t "${CIRCLE_TAG}"
-            cat CHANGELOG.md | ./bin/linux/amd64/github-release edit -t "${CIRCLE_TAG}" -d -
+      - run: hub release create -FCHANGELOG.md "${CIRCLE_TAG}"
 
 workflows:
   run-jobs:
