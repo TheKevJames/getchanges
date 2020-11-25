@@ -71,6 +71,6 @@ class ReadTheDocs(Base):
 
     @staticmethod
     def get_url(url: str) -> str:
-        return url\
-            .replace('/latest/', '/latest/_sources/')\
-            .replace('.html', '.rst.txt')
+        return (url
+                .replace('/latest/', '/latest/_sources/')
+                .replace('.html', '.rst.txt'))

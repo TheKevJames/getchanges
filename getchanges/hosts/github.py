@@ -91,6 +91,6 @@ class GitHub(Base):
 
     @staticmethod
     def get_url(url: str) -> str:
-        return url\
-            .replace('github.com', 'raw.githubusercontent.com')\
-            .replace('/blob', '')
+        return (url
+                .replace('github.com', 'raw.githubusercontent.com')
+                .replace('/blob', ''))
