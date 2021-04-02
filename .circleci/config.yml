@@ -7,7 +7,7 @@ orbs:
 jobs:
   pypi:
     docker:
-      - image: python:3.9.0-alpine
+      - image: python:3.9.3-alpine
     steps:
       - run: apk add --no-cache git openssh-client
       - run: pip install twine
