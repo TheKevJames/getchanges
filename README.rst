@@ -1,6 +1,17 @@
 getchanges
 ==========
 
+Deprecation Notice
+------------------
+
+This project was built before either `Renovate <renovatebot.com/>`_ or
+`Dependabot <https://dependabot.com/>`_ had fully implemented changelog
+lookups. Nowadays, there's no real point in using this repo directly -- I
+recommend making use of one of those tools instead!
+
+Original README
+---------------
+
 ``getchanges`` aims to be a CLI tool for finding and retrieving changelogs for
 any package. That means:
 
